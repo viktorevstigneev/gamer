@@ -112,10 +112,7 @@
 	"></p>
 </div>
 
-<style>
-	@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
-	@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-</style>
+
 
 <script>
 
@@ -310,7 +307,7 @@
 				if (rightPosition > 5) {
 					rightPosition = 0;
 				}
-				heroImg.style.left = `-${rightPosition * 96}px`;
+				heroImg.style.left = `-${rightPosition * 92}px`;
 				heroImg.style.top = '-192px';
 				imgBlock.style.left = `${imgBlockPosition * heroStep}px`;
 
@@ -344,7 +341,7 @@
 
 		rightPosition = rightPosition + 1;
 		heroImg.style.left = `-${rightPosition * 96}px`;
-		heroImg.style.top = '0px';
+		heroImg.style.top = '17px';
 
 		checkFalling();
 	}
@@ -1282,7 +1279,7 @@
 
 		createTilesBlackBlock(54, 63, floor3);
 
-		addEnemies();
+		// addEnemies();
 	}
 	const addStartScreen = () => {
 		//#38002c - фон
@@ -1321,10 +1318,10 @@
 	const start = () => {
 		addBackgroundImages();
 		buildLevel();
-		lifeCycle();
-		addHearts();
-		updateHearts();
-		addStartScreen();
+		// lifeCycle();
+		// addHearts();
+		// updateHearts();
+		// addStartScreen();
 	}
 	start();
 </script>
