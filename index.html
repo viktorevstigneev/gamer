@@ -1,14 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kiry</title>
-  </head>
-  <body>
-    <canvas id="canvas"> </canvas>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Вебинар. 1 урок</title>
+</head>
+<body>
+    <header class="header">
+        <h1 class="header__title">
+            ЗАПИСЬ 1 УРОКА
+        </h1>
+        <div class="arrow-down">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
 
-    <script src="./index.js"></script>
-  </body>
+    <h2 class="header__title">
+        видео будет доступно
+    </h1>
+    <div class="timer">
+        <div class="timer__items">
+          <div class="timer__item timer__days">00</div>
+          <div class="timer__item timer__hours">00</div>
+          <div class="timer__item timer__minutes">00</div>
+          <div class="timer__item timer__seconds">00</div>
+        </div>
+      </div>
+
+     <iframe class="main__video"  src="https://www.youtube.com/embed/XDqWsrkMrGw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+   
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+  // конечная дата, например 1 июля 2021
+  const deadline = new Date(2023, 04, 11, 19, 0);
+  // id таймера
+  let timerId = null;
+  // склонение числительных
+  function declensionNum(num, words) {
+    return words[(num % 100 > 4 && num % 100 < 20) ? 2 : [2, 0, 1, 1, 1, 2][(num % 10 < 5) ? num % 10 : 5]];
+  }
+  // вычисляем разницу дат и устанавливаем оставшееся времени в качестве содержимого элементов
+  function countdownTimer() {
+    const diff = deadline - new Date();
+    if (diff <= 0) {
+      clearInterval(timerId);
+    }
+    const days = diff > 0 ? Math.floor(diff / 1000 / 60 / 60 / 24) : 0;
+    const hours = diff > 0 ? Math.floor(diff / 1000 / 60 / 60) % 24 : 0;
+    const minutes = diff > 0 ? Math.floor(diff / 1000 / 60) % 60 : 0;
+    const seconds = diff > 0 ? Math.floor(diff / 1000) % 60 : 0;
+    $days.textContent = days < 10 ? '0' + days : days;
+    $hours.textContent = hours < 10 ? '0' + hours : hours;
+    $minutes.textContent = minutes < 10 ? '0' + minutes : minutes;
+    $seconds.textContent = seconds < 10 ? '0' + seconds : seconds;
+    $days.dataset.title = declensionNum(days, ['день', 'дня', 'дней']);
+    $hours.dataset.title = declensionNum(hours, ['час', 'часа', 'часов']);
+    $minutes.dataset.title = declensionNum(minutes, ['минута', 'минуты', 'минут']);
+    $seconds.dataset.title = declensionNum(seconds, ['секунда', 'секунды', 'секунд']);
+  }
+  // получаем элементы, содержащие компоненты даты
+  const $days = document.querySelector('.timer__days');
+  const $hours = document.querySelector('.timer__hours');
+  const $minutes = document.querySelector('.timer__minutes');
+  const $seconds = document.querySelector('.timer__seconds');
+  // вызываем функцию countdownTimer
+  countdownTimer();
+  // вызываем функцию countdownTimer каждую секунду
+  timerId = setInterval(countdownTimer, 1000);
+});
+     </script>
+</body>
 </html>
